@@ -1,0 +1,32 @@
+DROP DATABASE IF EXISTS companyDB;
+
+CREATE DATABASE companyDB;
+
+USE companyDB;
+
+DROP TABLE IF EXISTS department;
+DROP TABLE IF EXISTS job;
+DROP TABLE IF EXISTS employee;
+
+CREATE TABLE department (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    deptName VARCHAR(30) NOT NULL
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE job (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(30) NOT NULL,
+    salary DECIMAL NOT NULL,
+    deptID INTEGER,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE employee (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    firstName VARCHAR(30) NOT NULL,
+    lastName VARCHAR(30) NOT NULL,
+    jobID INTEGER,
+    managerID INTEGER,
+    PRIMARY KEY(id)
+);
