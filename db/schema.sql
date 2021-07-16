@@ -8,12 +8,14 @@ DROP TABLE IF EXISTS department;
 DROP TABLE IF EXISTS job;
 DROP TABLE IF EXISTS employee;
 
+-- create department table
 CREATE TABLE department (
     id INT AUTO_INCREMENT,
-    deptName VARCHAR(30) NOT NULL
+    deptName VARCHAR(30) NOT NULL,
     PRIMARY KEY(id)
 );
 
+-- create job table
 CREATE TABLE job (
     id INT AUTO_INCREMENT,
     title VARCHAR(30) NOT NULL,
@@ -22,6 +24,7 @@ CREATE TABLE job (
     PRIMARY KEY(id)
 );
 
+-- create employee table
 CREATE TABLE employee (
     id INT AUTO_INCREMENT,
     firstName VARCHAR(30) NOT NULL,
@@ -31,6 +34,7 @@ CREATE TABLE employee (
     PRIMARY KEY(id)
 );
 
+-- create department values
 INSERT INTO department (deptName)
 VALUES 
 ('Player'),
@@ -38,10 +42,11 @@ VALUES
 ('Executive Office'),
 ('Baseball Operations');
 
+-- create job values
 INSERT INTO job (title, salary, deptID)
 VALUES
 ('First Base', 10000000, 1),
-('Second Base', 9000000, 1),
+('Second Base', 50000000, 1),
 ('Third Base', 15000000, 1),
 ('Short Stop', 30000000, 1),
 ('Pitcher', 20000000, 1),
@@ -56,22 +61,22 @@ VALUES
 ('Owner', 100000000, 4),
 ('Vice President', 50000000, 4);
 
-
+-- create employee values
 INSERT INTO employee (firstName, lastName, jobID, managerID)
 VALUES
-('Yuli', 'Gurriel', '1B', null),
-('Jose', 'Altuve', '2B', null),
-('Alex', 'Bregman', '3B', null),
-('Carlos', 'Correa', 'SS', null),
-('Zack', 'Greinke', 'P', null),
-('Martin', 'Maldonado', 'C', null),
-('Kyle', 'Tucker', 'RF', null),
-('Michael', 'Brantley', 'LF', null),
-('Myles', 'Straw', 'CF', null),
-('Dusty', 'Baker', 'HC', 4),
-('Joe', 'Espada', 'AC', null),
-('Alex', 'Cintron', 'AC', null),
-('James', 'Click', 'GM', 3),
-('Brandon', 'Taubman', 'AGM', 3),
-('Jim', 'Crane', 'OW', 1),
-('Creighton', 'Kahoalii', 'VP', 2);
+("Yuli", "Gurriel", "1B", null),
+("Jose", "Altuve", "2B", null),
+("Alex", "Bregman", "3B", null),
+("Carlos", "Correa", "SS", null),
+("Zack", "Greinke", "P", null),
+("Martin", "Maldonado", "C", null),
+("Kyle", "Tucker", "RF", null),
+("Michael", "Brantley", "LF", null),
+("Myles", "Straw", "CF", null),
+("Dusty", "Baker", "HC", 4),
+("Joe", "Espada", "AC", null),
+("Alex", "Cintron", "AC", null),
+("James", "Click", "GM", 3),
+("Brandon", "Taubman", "AGM", 3),
+("Jim", "Crane", "OW", 1),
+("Creighton", "Kahoalii", "VP", 2);
