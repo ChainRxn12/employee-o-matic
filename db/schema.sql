@@ -80,3 +80,21 @@ VALUES
 ("Brandon", "Taubman", "AGM", 3),
 ("Jim", "Crane", "OW", 1),
 ("Creighton", "Kahoalii", "VP", 2);
+
+-- check to see if tables populate correctly
+SELECT * FROM employee;
+SELECT * FROM department;
+SELECT * FROM job;
+
+-- try joining information from three tables
+SELECT employee.id,
+deptName,
+jobID,
+title,
+salary,
+firstName,
+lastName,
+managerID
+FROM ((department
+JOIN job ON department.id = job.deptID)
+JOIN employee on job.id = employee.jobID);
