@@ -48,6 +48,7 @@ const start = () => {
             'Add a job',
             'Add an employee',
             'Update employee job',
+            'Delete employee',
             'EXIT',
         ],
     })
@@ -73,7 +74,11 @@ const start = () => {
                 addEmployee();
                 break;
             case 'Update employee job':
-                updateEmloyeeJob();
+                updateEmployeeJob();
+                break;
+/////////////////   Delete Employee /////////////////
+            case 'Delete employee':
+                deleteEmployee();
                 break;
             case 'EXIT':
                 connection.end();
@@ -202,6 +207,71 @@ const addEmployee = () => {
             function(err, res) {
                 if(err) throw err;
                 console.log('...Adding Employee...');
+                start();
+            }
+        );
+    });
+};
+
+///////////////// updateEmployeeJob function ///////////////// 
+const updateEmployeeJob = () => {
+    inquirer.prompt([
+        {
+            name: 'id',
+            type: 'input',
+            message: 'Enter Employee Id',
+        },
+        {
+            name: 'jobID',
+            type: 'input',
+            message: 'Enter new Job Id',
+        },
+    ])
+    .then(answer => {
+        connection.query(
+            'UPDATE employee SET jobID=? WHERE ID=?',
+            [answer.jobID, answer.id],
+            function(err, res) {
+                if(err) throw err;
+                console.log('...Updating Employee...');
+                start();
+            }
+        );
+    });
+};
+
+///////////////// deleteEmployee function /////////////////
+const deleteEmployee = () => {
+    inquirer.prompt([
+        {
+            name: 'first',
+            type: 'input',
+            message: 'What is the first name of employee to delete?',
+        },
+        {
+            name: 'last',
+            type: 'input',
+            message: 'What is the last name of employee to delete?',
+        },
+        {
+            name: 'jobID',
+            type: 'input',
+            message: 'What is the job id of employee to delete?',
+        },
+        {
+            name:'managerID',
+            type: 'input',
+            message: 'What is the manager id of employee to delete?',
+        },
+    ])
+    .then(answer => {
+        connection.query(
+            'DELETE FROM employee WHERE (firstName, lastName, jobID, managerID) IN (?, ?, ?, ?)',
+            [answer.first, answer.last, answer.jobID, answer.managerID],
+            function(err, res) {
+                if(err) throw err;
+                console.log('...Deleting employee...');
+                viewEmployees();
                 start();
             }
         );
