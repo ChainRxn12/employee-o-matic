@@ -1,11 +1,12 @@
-// require dependencies
+/////////////// REQUIRE DEPENDENCIES ///////////////
 
 const mysql = require('mysql');
 const inquirer = require('inquirer');
 const consoleTable = require('console.table');
 
 
-//create mysql connection
+/////////////// CREATE MYSQL CONNECTION ///////////////
+
 const connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
@@ -17,7 +18,6 @@ const connection = mysql.createConnection({
   connection.connect((err) => {
       if(err) throw err;
       console.log("Welcome to Houston Astros Employee-O-Matic!");
-
       var figlet = require('figlet');
  
         figlet('Employee-O-Matic!', function(err, data) {
@@ -27,12 +27,14 @@ const connection = mysql.createConnection({
             return;
         }
             console.log(data)
+            start();
     });
   });
 
-// BEGIN INQUIRER PROMPTS
+/////////////// BEGIN INQUIRER PROMPTS ///////////////
+/////////////////////////////////////////////////////
 
-// Start Menu Prompt
+/////////////// Start Menu Prompt ///////////////
 const start = () => {
     inquirer.prompt({
         message: 'Where do you want to go?',
@@ -49,7 +51,7 @@ const start = () => {
             'EXIT',
         ],
     })
-// Create switch case options
+/////////////// Create switch case options ///////////////
     .then (response => {
         switch (response.menu) {
             case 'View all departments':
@@ -78,7 +80,28 @@ const start = () => {
                 break;
             default:
                 connection.end();
-        }
+        };
     });
 };
 
+/////////////// BEGIN CREATE FUNCTIONS FOR SWITCH CASES ///////////////
+/////////////// MUST USE CONSOLE.TABLE ////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+
+///////////////// viewDepartment function ///////////////
+const viewDepartment = () => {
+    connection.query('SELECT * FROM department', function (err, res) {
+        if(err) throw err;
+        console.table(res);
+        start();
+    });
+};
+
+///////////////// viewJobs function /////////////////
+const viewJobs = () => {
+    connection.query('SELECT * FROM job', function (err,res) {
+        if(err) throw err;
+        console.table(res);
+        start();
+    });
+};

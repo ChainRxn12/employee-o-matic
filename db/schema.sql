@@ -1,3 +1,5 @@
+-- /////////////// create database name, drop db or tables if exists /////////////// 
+
 DROP DATABASE IF EXISTS astrosDB;
 
 CREATE DATABASE astrosDB;
@@ -8,14 +10,14 @@ DROP TABLE IF EXISTS department;
 DROP TABLE IF EXISTS job;
 DROP TABLE IF EXISTS employee;
 
--- create department table
+--/////////////// create department table///////////////
 CREATE TABLE department (
     id INT AUTO_INCREMENT,
     deptName VARCHAR(30) NOT NULL,
     PRIMARY KEY(id)
 );
 
--- create job table
+--/////////////// create job table///////////////
 CREATE TABLE job (
     id INT AUTO_INCREMENT,
     title VARCHAR(30) NOT NULL,
@@ -24,7 +26,7 @@ CREATE TABLE job (
     PRIMARY KEY(id)
 );
 
--- create employee table
+--/////////////// create employee table///////////////
 CREATE TABLE employee (
     id INT AUTO_INCREMENT,
     firstName VARCHAR(30) NOT NULL,
@@ -34,7 +36,7 @@ CREATE TABLE employee (
     PRIMARY KEY(id)
 );
 
--- create department values
+--/////////////// create department values///////////////
 INSERT INTO department (deptName)
 VALUES 
 ('Player'),
@@ -42,7 +44,7 @@ VALUES
 ('Executive Office'),
 ('Baseball Operations');
 
--- create job values
+--/////////////// create job values///////////////
 INSERT INTO job (title, salary, deptID)
 VALUES
 ('First Base', 10000000, 1),
@@ -61,7 +63,7 @@ VALUES
 ('Owner', 100000000, 4),
 ('Vice President', 50000000, 4);
 
--- create employee values
+--/////////////// create employee values///////////////
 INSERT INTO employee (firstName, lastName, jobID, managerID)
 VALUES
 ("Yuli", "Gurriel", "1", 1),
@@ -80,13 +82,12 @@ VALUES
 ("Jim", "Crane", "14", null),
 ("Creighton", "Kahoalii", "15", 2);
 
--- check to see if tables populate correctly
+-- ///////////////check to see if tables populate correctly///////////////
 SELECT * FROM employee;
 SELECT * FROM department;
 SELECT * FROM job;
 
--- try joining information from three tables
--- in order to join tables you need the key in employee table for role id but that is in 
+-- /////////////// JOIN TABLES TOGETHER ///////////////
 SELECT employee.id,
 deptName,
 jobID,
