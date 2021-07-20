@@ -117,3 +117,24 @@ const viewEmployees = () => {
         });
 };   
 
+///////////////// addDepartment function /////////////////
+const addDepartment = () => {
+    inquirer.prompt([
+        {
+            name: 'department',
+            type: 'input',
+            message: 'What is the department name?',
+        },
+    ])
+    .then(answer => {
+        connection.query(
+            'INSERT INTO department (deptName) VALUES (?)',
+            [answer.department],
+            function(err, res) {
+                if(err) throw err;
+                console.log('...Adding Department...');
+                start();
+            }
+        );
+    });
+};
