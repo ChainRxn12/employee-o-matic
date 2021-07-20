@@ -138,3 +138,72 @@ const addDepartment = () => {
         );
     });
 };
+
+///////////////// addJob function /////////////////
+const addJob = () => {
+    inquirer.prompt([
+        {
+            name: 'jobTitle',
+            type: 'input',
+            message: 'What is the job title?',
+        },
+        {
+            name: 'salary',
+            type: 'input',
+            message: 'What is the salary?', 
+        },
+        {
+            name: 'deptID',
+            type: 'input',
+            message: 'What is the department ID number?',
+        },
+    ])
+    .then(answer => {
+        connection.query(
+            'INSERT INTO job (title, salary, deptID) VALUES (?, ?, ?)',
+            [answer.jobTitle, answer.salary, answer.deptID],
+            function(err, res) {
+                if(err) throw err; 
+                console.log('...Adding Job...');
+                start();
+            }
+        );
+    });
+};
+
+///////////////// addEmployee function /////////////////
+const addEmployee = () => {
+    inquirer.prompt([
+        {
+            name: 'first_name',
+            type: 'input',
+            message: 'What is the employee\'s first name?',
+        },
+        {
+            name: 'last_name',
+            type: 'input',
+            message: 'What is the employee\'s last name?',
+        },
+        {
+            name: 'jobID',
+            type: 'input',
+            message: 'What is the employee\'s job id?',
+        },
+        {
+            name:'managerID',
+            type: 'input',
+            message: 'What is the manager\'s id?',
+        },
+    ])
+    .then(answer => {
+        connection.query(
+            'INSERT INTO employee (firstName, lastName, jobID, managerID) VALUES (?, ?, ?, ?)',
+            [answer.first_name, answer.last_name, answer.jobID, answer.managerID],
+            function(err, res) {
+                if(err) throw err;
+                console.log('...Adding Employee...');
+                start();
+            }
+        );
+    });
+};
