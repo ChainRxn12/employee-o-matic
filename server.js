@@ -55,7 +55,7 @@ const start = () => {
     .then (response => {
         switch (response.menu) {
             case 'View all departments':
-                viewDepartment();
+                viewDepartments();
                 break;
             case 'View all jobs':
                 viewJobs();
@@ -88,8 +88,8 @@ const start = () => {
 /////////////// MUST USE CONSOLE.TABLE ////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-///////////////// viewDepartment function ///////////////
-const viewDepartment = () => {
+///////////////// viewDepartments function ///////////////
+const viewDepartments = () => {
     connection.query('SELECT * FROM department', function (err, res) {
         if(err) throw err;
         console.table(res);
@@ -105,3 +105,15 @@ const viewJobs = () => {
         start();
     });
 };
+
+///////////////// viewEmployees function /////////////////
+const viewEmployees = () => {
+    connection.query(
+        'SELECT employee.id, deptName, jobID, title, salary, firstName,lastName, managerID FROM ((department JOIN job ON department.id = job.deptID) JOIN employee on job.id = employee.jobID);',
+        function (err, res) {
+            if(err) throw err;
+            console.table(res);
+            start();
+        });
+};   
+
