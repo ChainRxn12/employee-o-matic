@@ -64,22 +64,21 @@ VALUES
 -- create employee values
 INSERT INTO employee (firstName, lastName, jobID, managerID)
 VALUES
-("Yuli", "Gurriel", "1B", null),
-("Jose", "Altuve", "2B", null),
-("Alex", "Bregman", "3B", null),
-("Carlos", "Correa", "SS", null),
-("Zack", "Greinke", "P", null),
-("Martin", "Maldonado", "C", null),
-("Kyle", "Tucker", "RF", null),
-("Michael", "Brantley", "LF", null),
-("Myles", "Straw", "CF", null),
-("Dusty", "Baker", "HC", 4),
-("Joe", "Espada", "AC", null),
-("Alex", "Cintron", "AC", null),
-("James", "Click", "GM", 3),
-("Brandon", "Taubman", "AGM", 3),
-("Jim", "Crane", "OW", 1),
-("Creighton", "Kahoalii", "VP", 2);
+("Yuli", "Gurriel", "1", 1),
+("Jose", "Altuve", "2", 1),
+("Alex", "Bregman", "3", 1),
+("Carlos", "Correa", "4", 1),
+("Zack", "Greinke", "5", 1),
+("Martin", "Maldonado", "6", 1),
+("Kyle", "Tucker", "7", 1),
+("Michael", "Brantley", "8", 1),
+("Myles", "Straw", "9", 1),
+("Dusty", "Baker", "10", 2),
+("Joe", "Espada", "11", 2),
+("James", "Click", "12", 2),
+("Brandon", "Taubman", "13", 2),
+("Jim", "Crane", "14", null),
+("Creighton", "Kahoalii", "15", 2);
 
 -- check to see if tables populate correctly
 SELECT * FROM employee;
@@ -87,6 +86,7 @@ SELECT * FROM department;
 SELECT * FROM job;
 
 -- try joining information from three tables
+-- in order to join tables you need the key in employee table for role id but that is in 
 SELECT employee.id,
 deptName,
 jobID,
