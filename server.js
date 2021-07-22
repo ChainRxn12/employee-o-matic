@@ -241,33 +241,20 @@ const updateEmployeeJob = () => {
 };
 
 ///////////////// deleteEmployee function /////////////////
+///////////////// simplify prompt, select employee by id, create secondary prompt "are you sure/confirm delete"/////////////////
 const deleteEmployee = () => {
     inquirer.prompt([
         {
-            name: 'first',
+            name: 'id',
             type: 'input',
-            message: 'What is the first name of employee to delete?',
+            message: 'What is the id of employee to delete?',
         },
-        {
-            name: 'last',
-            type: 'input',
-            message: 'What is the last name of employee to delete?',
-        },
-        {
-            name: 'jobID',
-            type: 'input',
-            message: 'What is the job id of employee to delete?',
-        },
-        {
-            name:'managerID',
-            type: 'input',
-            message: 'What is the manager id of employee to delete?',
-        },
+      
     ])
     .then(answer => {
         connection.query(
-            'DELETE FROM employee WHERE (firstName, lastName, jobID, managerID) IN (?, ?, ?, ?)',
-            [answer.first, answer.last, answer.jobID, answer.managerID],
+            'DELETE FROM employee WHERE id=?',
+            [answer.id],
             function(err, res) {
                 if(err) throw err;
                 console.log('...Deleting employee...');
@@ -277,3 +264,7 @@ const deleteEmployee = () => {
         );
     });
 };
+
+
+
+    
